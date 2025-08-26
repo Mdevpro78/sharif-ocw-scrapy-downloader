@@ -1,0 +1,127 @@
+name: Deploy mkdocforge site
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs/**'
+      - 'scripts/install_doxygen.sh'
+      - 'mkdocs.yml'
+      - '.github/workflows/site.yml'
+      - '.mdformat.toml'
+      - 'pyproject.toml'
+      - 'Makefile'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'docs/**'
+      - 'scripts/install_doxygen.sh'
+      - '.mdformat.toml'
+      - 'mkdocs.yml'
+      - 'pyproject.toml'
+      - 'Makefile'
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  lint-docs:
+    name: Lint Documentation
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Setup UV
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: "latest"
+          enable-cache: true
+
+      - name: Install linting dependencies
+        run: |
+          rm -f uv.lock
+          make uv_sync_lint
+
+      - name: Lint Markdown files
+        id: lint_check
+        run: uv run mdformat --check ${PWD}/docs/
+        continue-on-error: true
+
+      - name: Check if linting failed
+        if: steps.lint_check.outcome == 'failure'
+        run: |
+          echo "::warning::Markdown linting failed. Run 'uv run mdformat docs/' locally to fix"
+          echo "::warning::formatting issues."
+          # Don't fail the workflow, but provide clear warning
+  deploy-docs:
+    name: Deploy Documentation
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: lint-docs
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch all history for proper versioning
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Setup UV
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: "latest"
+          enable-cache: true
+
+      - name: Install dependencies
+        run: |
+          rm -f uv.lock
+          make uv_sync_docs
+
+      - name: Configure Git user
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+      - name: Cache Doxygen
+        id: cache-doxygen
+        uses: actions/cache@v4
+        with:
+          path: /usr/local/bin/doxygen
+          key: ${{ runner.os }}-doxygen-${{ hashFiles('scripts/install_doxygen.sh') }}
+
+      - name: Install Doxygen
+        if: steps.cache-doxygen.outputs.cache-hit != 'true'
+        run: sudo bash ${PWD}/scripts/install_doxygen.sh
+
+      - name: Verify Doxygen Installation
+        run: doxygen --version
+
+      - name: Build documentation
+        run: make uv_mkdocs_build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
