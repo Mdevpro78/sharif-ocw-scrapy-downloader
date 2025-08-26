@@ -1,4 +1,4 @@
-name: Deploy mkdocforge site
+name: Deploy Sharif OCW Scrapy's Downloader site
 
 on:
   push:
@@ -8,6 +8,7 @@ on:
       - 'docs/**'
       - 'scripts/install_doxygen.sh'
       - 'mkdocs.yml'
+      - '.pre-commit-config.yaml'
       - '.github/workflows/site.yml'
       - '.mdformat.toml'
       - 'pyproject.toml'
@@ -19,6 +20,7 @@ on:
       - 'docs/**'
       - 'scripts/install_doxygen.sh'
       - '.mdformat.toml'
+      - '.pre-commit-config.yaml'
       - 'mkdocs.yml'
       - 'pyproject.toml'
       - 'Makefile'
@@ -35,7 +37,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.12'
 
       - name: Setup UV
         uses: astral-sh/setup-uv@v5
@@ -50,13 +52,12 @@ jobs:
 
       - name: Lint Markdown files
         id: lint_check
-        run: uv run mdformat --check ${PWD}/docs/
+        run: make uv_pre_commit
         continue-on-error: true
 
       - name: Check if linting failed
         if: steps.lint_check.outcome == 'failure'
         run: |
-          echo "::warning::Markdown linting failed. Run 'uv run mdformat docs/' locally to fix"
           echo "::warning::formatting issues."
           # Don't fail the workflow, but provide clear warning
   deploy-docs:

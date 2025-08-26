@@ -1,8 +1,8 @@
 ---
 # Main site configuration
 # -----------------------
-site_name: MkDocForge  # Project name displayed in browser and top nav
-site_description: MkDocs Documentation Platform with Advanced Features
+site_name: Sharif OCW Scrapy's Downloader  # Project name displayed in browser and top nav
+site_description: One-week MVP sprint board for OCW Sharif Scrapy's Downloader
 docs_dir: docs                   # Source directory containing markdown files
 site_dir: site                   # Output directory for the built site
 extra_css:
@@ -117,7 +117,7 @@ plugins:
   # Doxygen integration for code documentation
   - mkdoxy:
       projects:
-        mkdocforge:                  # Project identifier (alphanumeric only)
+        sharif_ocw_scrapy_downloader:                  # Project identifier (alphanumeric only)
           # src-dirs: ./src/      # Source code location
           src-dirs: ./docs/      # Source code location
           full-doc: true        # Generate complete API documentation
@@ -210,85 +210,33 @@ nav:
       - Overview: index.md            # Homepage
   - Project:
       - Roadmap: project-roadmap.md
-  - Diagrams:
-      - Overview: diagrams/index.md
-      - URL Shortner:
-          - Overview: diagrams/url_shortner/url_shortner_index.md
-          - PlantUML: diagrams/url_shortner/url_shortner_spec.md
-  - Development:
-      - Overview: developement-hub.md
-      - Git:
-          - Git Workflow Guide: git/git-workflow-guide.md
-          - Git Flow Guide: git/gitflow-guide.md
-      - Python:
-          - Rye: python/rye_commands.md
-          - MyPy Configuration Guide: python/mypy-configuration-guide.md
-          - Documentation Standards: python/documentation-standards.md
-          - Tox Guide: python/tox-testing-guide.md
-          - Pre-commit Configuration: python/pre-commit-config.md
-      - Documentation:
-          - Material Icons Guide: material-icons-guide.md
-          - Material Icons Standardization Plan: material-icons-standardization-plan.md
-      - Docker:
-          - Docker Guide: docker/docker-guide.md
-      - Vagrant:
-          - Vagrant Guide: vagrant/vagrant-guide.md
-          - Docker with Ubuntu 24.04: vagrant/vagrant-docker-ubuntu2404.md
-      - ADR:
-          - Architecture Hub: architecture/architecture-hub.md
-          - Architecture Decisions: architecture/adr-index.md
-          - ADR Template: architecture/adr-template.md
-          - Decisions:
-              - Example Decision: architecture/decisions/adr-0001-example.md
-          - Templates:
-              - Comprehensive Template: architecture/templates/adr-comprehensive-template.md
-              - Template 01: architecture/templates/adr-temp-01.md
-              - Template 02: architecture/templates/adr-temp-02.md
-              - Template 03: architecture/templates/adr-temp-03.md
-              - Template 04: architecture/templates/adr-temp-04.md
-      - Glossary:
-          - Overview: glossary/glossary-hub.md
-          - Technical Glossary: glossary/technical-glossary.md
-          - Business Glossary: glossary/business-glossary.md
-          - Glossary Process: glossary/glossary-process.md
-          - Templates:
-              - Term Template: glossary/templates/glossary-term-template.md
-      - Past Performance:
-          - Overview: past-performance/past-performance-hub.md
-          - Performance Index: past-performance/past-performance-index.md
-          - Templates:
-              - Comprehensive Template: past-performance/templates/past-performance-comprehensive.md
-              - Template 01: past-performance/templates/past-performance-temp-01.md
-              - Template 02: past-performance/templates/past-performance-temp-02.md
-              - Template 03: past-performance/templates/past-performance-temp-03.md
-              - Template 04: past-performance/templates/past-performance-temp-04.md
-      - Community:
-          - Contributing Guide: CONTRIBUTING.md
-          - Code of Conduct: CODE_OF_CONDUCT.md
   - API:
-      - mkdocforge:
-          - Links: mkdocforge/links.md
-          - Annotated: mkdocforge/annotated.md
-          - Files: mkdocforge/files.md
-          - Namespaces: mkdocforge/namespaces.md
-          - Classes: mkdocforge/classes.md
-          - Hierarchy: mkdocforge/hierarchy.md
-          - Modules: mkdocforge/modules.md
-          - Pages: mkdocforge/pages.md
-          - Class Members: mkdocforge/class_members.md
-          - Member Functions: mkdocforge/class_member_functions.md
-          - Member Variables: mkdocforge/class_member_variables.md
-          - Member Typedefs: mkdocforge/class_member_typedefs.md
-          - Member Enums: mkdocforge/class_member_enums.md
-          - Namespace Members: mkdocforge/namespace_members.md
-          - Namespace Functions: mkdocforge/namespace_member_functions.md
-          - Namespace Variables: mkdocforge/namespace_member_variables.md
-          - Namespace Typedefs: mkdocforge/namespace_member_typedefs.md
-          - Namespace Enums: mkdocforge/namespace_member_enums.md
-          - Functions: mkdocforge/functions.md
-          - Macros: mkdocforge/macros.md
-          - Variables: mkdocforge/variables.md
+      - sharif_ocw_scrapy_downloader:
+          - Links: sharif_ocw_scrapy_downloader/links.md
+          - Annotated: sharif_ocw_scrapy_downloader/annotated.md
+          - Files: sharif_ocw_scrapy_downloader/files.md
+          - Namespaces: sharif_ocw_scrapy_downloader/namespaces.md
+          - Classes: sharif_ocw_scrapy_downloader/classes.md
+          - Hierarchy: sharif_ocw_scrapy_downloader/hierarchy.md
+          - Modules: sharif_ocw_scrapy_downloader/modules.md
+          - Pages: sharif_ocw_scrapy_downloader/pages.md
+          - Class Members: sharif_ocw_scrapy_downloader/class_members.md
+          - Member Functions: sharif_ocw_scrapy_downloader/class_member_functions.md
+          - Member Variables: sharif_ocw_scrapy_downloader/class_member_variables.md
+          - Member Typedefs: sharif_ocw_scrapy_downloader/class_member_typedefs.md
+          - Member Enums: sharif_ocw_scrapy_downloader/class_member_enums.md
+          - Namespace Members: sharif_ocw_scrapy_downloader/namespace_members.md
+          - Namespace Functions: sharif_ocw_scrapy_downloader/namespace_member_functions.md
+          - Namespace Variables: sharif_ocw_scrapy_downloader/namespace_member_variables.md
+          - Namespace Typedefs: sharif_ocw_scrapy_downloader/namespace_member_typedefs.md
+          - Namespace Enums: sharif_ocw_scrapy_downloader/namespace_member_enums.md
+          - Functions: sharif_ocw_scrapy_downloader/functions.md
+          - Macros: sharif_ocw_scrapy_downloader/macros.md
+          - Variables: sharif_ocw_scrapy_downloader/variables.md
 
+  - Community:
+      - Contributing Guide: CONTRIBUTING.md
+      - Code of Conduct: CODE_OF_CONDUCT.md
 # URL and rendering configuration
 # ------------------------------
 use_directory_urls: true        # Create clean URLs without .html extension

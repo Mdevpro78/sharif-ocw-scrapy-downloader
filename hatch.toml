@@ -1,3 +1,0 @@
-[envs.default]
-installer = "uv"
-python = "3.11"
