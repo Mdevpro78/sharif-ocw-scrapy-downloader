@@ -1,4 +1,4 @@
-.PHONY: diff all clean test \
+.PHONY: diff diff-dir all clean test \
 	docker-build-clean docker-build docker-up \
 	docker-logs docker-ps \
 	docker-down docker-restart \
@@ -78,7 +78,14 @@ diff:
 		echo "Usage: make diff file=<path/to/file>"; \
 		exit 1; \
 	fi; \
-	git diff master --unified=0 $(file)
+	git diff main --unified=0 $(file)
+
+diff-dir:
+	@if [ -z "$(dir)" ]; then \
+		echo "Usage: make diff-dir dir=<path/to/directory>"; \
+		exit 1; \
+	fi; \
+	git diff main --unified=0 -- "$(dir)"
 
 branch-from:
 	@if [ -z "$(SOURCE)" ] || [ -z "$(DEST)" ]; then \
