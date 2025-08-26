@@ -1,15 +1,37 @@
 <p align="center">
-<h1 align="center">📚 MkDocs Documentation Platform with Advanced Features </h1>
+<h1 align="center"> Sharif OCW Scrapy's Downloader </h1>
 <p align="center">
-<a href="https://img.shields.io"><img src="https://img.shields.io/badge/Project%20Status-Active-green.svg" alt="Project Status: Active"></a>
-<a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/Python-3.11+-blue.svg" alt="Python Version"></a>
-<a href="https://www.mkdocs.org"><img src="https://img.shields.io/badge/docs-mkdocs-blue.svg" alt="Documentation"></a>
-<a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License"></a>
+
+<a href="https://img.shields.io">
+<img src="https://img.shields.io/badge/Project%20Status-Active-green.svg" alt="Project Status: Active">
+</a>
+
+<a href="https://www.python.org/downloads/">
+<img src="https://img.shields.io/badge/Python-3.11+-blue.svg" alt="Python Version">
+</a>
+
+<a href="https://scrapy.org">
+<img src="https://img.shields.io/badge/Scrapy-2.11+-green.svg" alt="Scrapy Version">
+</a>
+
+<a href="https://pydantic.dev">
+<img src="https://img.shields.io/badge/Pydantic-2.6+-blue.svg" alt="Pydantic Version">
+</a>
+
+<a href="https://www.mkdocs.org">
+<img src="https://img.shields.io/badge/docs-mkdocs-blue.svg" alt="Documentation">
+</a>
+
+<a href="LICENSE">
+<img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">
+</a>
+
 </p>
-<p align="center"><em>A comprehensive documentation template powered by MkDocs and its ecosystem.</em></p>
+<p align="center"><em> One-week MVP sprint board for OCW Sharif Scrapy's Downloader.</em>
+</p>
 <p align="center">
 <a href="#getting-started" class="md-button md-button--primary">Getting Started</a>
-<a href="https://github.com" class="md-button">View on GitHub</a>
+<a href="https://github.com/Mdevpro78/sharif-ocw-scrapy-downloader" class="md-button">View on GitHub</a>
 </p>
 </p>
 
@@ -17,21 +39,12 @@
 
 ## 🚀 Getting Started
 
-!!! info "Official Documentation"
-
-    For comprehensive documentation, visit [mkdocs.org](https://www.mkdocs.org).
-
 ### ⚡️ Quick Installation
 
 ```bash
 # Install using pip
 pip install -r requirements.txt
 
-# Or using Poetry
-poetry install
-
-# Or using Rye (recommended)
-rye sync
 ```
 
 ### 🛠️ Essential Commands
@@ -50,13 +63,7 @@ rye sync
 !!! abstract "Directory Structure"
 
     ```plaintext
-    .
-    ├── docs/                   # Documentation files
-    │   ├── index.md           # Homepage
-    │   └── ...                # Other markdown files
-    ├── mkdocs.yml             # Configuration
-    ├── requirements.txt       # Python dependencies
-    └── README.md             # Project readme
+
     ```
 
 ---
