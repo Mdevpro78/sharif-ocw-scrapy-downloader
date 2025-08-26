@@ -1,4 +1,4 @@
-name: Deploy mkdocforge site
+name: Deploy Sharif OCW Scrapy's Downloader site
 
 on:
   push:
