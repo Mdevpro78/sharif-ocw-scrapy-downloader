@@ -34,13 +34,19 @@ docker-rebuild: docker-build docker-restart
 all:
 	@echo "No build steps defined"
 clean:
-	@echo "No cleanup steps defined"
+	@echo "🧹 Cleaning cache directories and virtual environment..."
+	@rm -rf .uv_cache .idea .pytest_cache .venv uv.lock
+	@find . -type d -name "__pycache__" -exec rm -r {} +
+	@find . -type d -name "smart_invoice_escalation.egg-info" -exec rm -r {} +
+	@echo "✅ Clean completed!"
 test:
 	@echo "No tests defined"
-rye_init_env:
-	rye init -v --virtual --py cpython@3.11.11 --min-py 3.11.11 --name mkdocforge
-rye_sync:
-	rye sync
+uv_init_env:
+	uv venv --python=3.11.11 .venv
+	uv pip install --upgrade pip
+
+uv_sync:
+	uv pip install -r requirements.txt
 # UV dependency management commands
 uv_sync_dev:
 	uv sync --extra dev
@@ -51,7 +57,7 @@ uv_sync_test:
 uv_sync_lint:
 	uv sync --extra lint
 uv_sync_all:
-	uv sync --extra all
+	uv sync --python 3.12.10 --upgrade --all-groups --all-extras --reinstall --no-cache --resolution=highest
 uv_mkdocs_build:
 	uv run mkdocs build -v
 # Combined environment setup commands
