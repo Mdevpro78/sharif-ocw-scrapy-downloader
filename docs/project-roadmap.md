@@ -187,15 +187,15 @@ gantt
     title 1-Week Roadmap: Sharif OCW Scrapy's Downloader
     dateFormat  YYYY-MM-DD
     section Setup
-    Day 1: Setup Repo & Settings         :done, 2025-08-26, 1d
+    Day 1: Setup Repo & Settings         :done, 2025-08-27, 1d
     section Core Development
-    Day 2: Data Models & Items           :active, 2025-08-27, 1d
-    Day 3: Spider Implementation         : 2025-08-28, 1d
-    Day 4: Pipelines (Validation+Storage): 2025-08-29, 1d
-    Day 5: Download & Progress Tracking  : 2025-08-30, 1d
-    Day 6: Middleware & Error Handling   : 2025-08-31, 1d
+    Day 2: Data Models & Items           :active, 2025-08-28, 1d
+    Day 3: Spider Implementation         : 2025-08-29, 1d
+    Day 4: Pipelines (Validation+Storage): 2025-08-30, 1d
+    Day 5: Download & Progress Tracking  : 2025-08-31, 1d
+    Day 6: Middleware & Error Handling   : 2025-09-1, 1d
     section Release
-    Day 7: Testing, Docs & Release       : 2025-09-01, 1d
+    Day 7: Testing, Docs & Release       : 2025-09-02, 1d
 ```
 
 ## Branch-name mapping (one branch per task)
