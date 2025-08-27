@@ -2,7 +2,7 @@
 
 # Code of Conduct
 
-> Our standards for participation in the DocForge community
+> Our standards for participation in the **Sharif OCW Scrapy's Downloader** community
 
 ## Our Pledge
 
