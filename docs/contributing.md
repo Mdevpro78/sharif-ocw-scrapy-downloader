@@ -1,10 +1,10 @@
-# Contributing to DocForge
+# Contributing to Sharif OCW Scrapy's Downloader
 
 > Guidelines for contributing to this project
 
 ## 🚀 Getting Started
 
-Thank you for considering contributing to DocForge! This document outlines the process for contributing to the project and addresses common questions.
+Thank you for considering contributing to **Sharif OCW Scrapy's Downloader**! This document outlines the process for contributing to the project and addresses common questions.
 
 ## 📝 Code of Conduct
 
@@ -22,7 +22,13 @@ This project adheres to a Code of Conduct that all participants are expected to 
     make setup_dev
     ```
 
-3. **Create a branch** for your changes:
+or
+
+```bash
+make uv_sync_all
+```
+
+1. **Create a branch** for your changes:
 
     ```bash
     git checkout -b feature/your-feature-name
