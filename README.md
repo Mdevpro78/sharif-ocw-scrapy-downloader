@@ -1,38 +1,68 @@
-# MkDocForge
-
 <p align="center">
-<a href="https://img.shields.io"><img src="https://img.shields.io/badge/Project%20Status-Active-green.svg" alt="Project Status: Active"></a>
-<a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/Python-3.11+-blue.svg" alt="Python Version"></a>
-<a href="https://www.mkdocs.org"><img src="https://img.shields.io/badge/docs-mkdocs-blue.svg" alt="Documentation"></a>
-<a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License"></a>
-</p>
+<h1 align="center"> Sharif OCW Scrapy's Downloader </h1>
+<p align="center">
 
-<p align="center"><em>A comprehensive documentation platform powered by MkDocs with advanced features for technical documentation.</em></p>
+<a href="https://img.shields.io">
+<img src="https://img.shields.io/badge/Project%20Status-Active-green.svg" alt="Project Status: Active">
+</a>
+
+<a href="https://www.python.org/downloads/">
+<img src="https://img.shields.io/badge/Python-3.11+-blue.svg" alt="Python Version">
+</a>
+
+<a href="https://scrapy.org">
+<img src="https://img.shields.io/badge/Scrapy-2.11+-green.svg" alt="Scrapy Version">
+</a>
+
+<a href="https://pydantic.dev">
+<img src="https://img.shields.io/badge/Pydantic-2.6+-blue.svg" alt="Pydantic Version">
+</a>
+
+<a href="https://www.mkdocs.org">
+<img src="https://img.shields.io/badge/docs-mkdocs-blue.svg" alt="Documentation">
+</a>
+
+<a href="LICENSE">
+<img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">
+</a>
+
+</p>
+<p align="center"><em> One-week MVP sprint board for OCW Sharif Scrapy's Downloader.</em>
+</p>
+<p align="center">
+<a href="#getting-started" class="md-button md-button--primary">Getting Started</a>
+<a href="https://github.com/Mdevpro78/sharif-ocw-scrapy-downloader" class="md-button">View on GitHub</a>
+</p>
+</p>
 
 ## 📚 Overview
 
-MkDocForge is a powerful documentation platform built on top of MkDocs that provides enhanced features for creating beautiful, functional, and comprehensive technical documentation. It combines the simplicity of Markdown with advanced capabilities like versioned documentation, code documentation via Doxygen integration, diagrams, and a rich set of plugins to create professional documentation sites.
+**Project Goal:** Deliver an MVP Scrapy-based downloader for Sharif OCW that:
 
-## 🎯 Purpose
+- Fetches course metadata and sessions
+- Downloads all downloadable files
+- Organizes outputs into structured folders
+- Provides progress tracking and basic error handling
 
-MkDocForge addresses common documentation challenges by providing:
+**Success Criteria:**
 
-- **Unified Documentation**: Combine API references, user guides, architecture decisions, and more in one platform
-- **Versioned Documentation**: Track and maintain documentation across different software versions
-- **Code Integration**: Automatically generate API documentation from source code comments
-- **Rich Media Support**: Easily embed diagrams, images, and interactive elements
-- **Collaborative Workflow**: Git-based workflow for documentation-as-code practices
+- Able to download at least one complete course (videos + PDFs)
+- Correct directory structure with sanitized filenames
+- Basic duplicate detection + retry handling works
+- GitHub issues, milestones, and PRs follow roadmap
 
-## ✨ Key Features
+**Team Size:** 1 developer (solo)
 
-- 🎨 **Material Design Theme**: Beautiful, responsive documentation with light/dark mode
-- 📊 **Diagram Support**: PlantUML integration for architectural and flow diagrams
-- 🔄 **Versioned Documentation**: Maintain docs for multiple software versions with Mike
-- 📝 **Markdown Extensions**: Enhanced markdown with admonitions, tabs, code annotations
-- 🧩 **Plugin Ecosystem**: Extensive collection of plugins for advanced functionality
-- 🐳 **Docker Support**: Containerized environment for consistent documentation builds
-- 🔍 **Full-Text Search**: Powerful search capabilities across documentation
-- 💻 **Code Documentation**: Doxygen integration for automatic code documentation
+**Roles & Responsibilities:**
+
+- Developer: Implement, test, document, manage repo, and review
+
+**Definition of Done (DoD):**
+
+- Code compiles and runs without errors
+- Passes basic integration tests on one sample course
+- Artifacts stored in correct directory structure
+- Pull requests merged into `main` with review checklist passed
 
 ## 🚀 Getting Started
 
@@ -45,8 +75,8 @@ MkDocForge addresses common documentation challenges by providing:
 
 ```bash
 # Clone the repository
-git clone https://github.com/Mdevpro78/mkdocforge
-cd mkdocforge
+git clone https://github.com/Mdevpro78/sharif-ocw-scrapy-downloader/
+cd sharif-ocw-scrapy-downloader
 
 # Install dependencies using UV (recommended)
 make uv_sync_docs
@@ -97,22 +127,39 @@ Once running, access the documentation at [http://localhost:8000](http://localho
 
 ## 📁 Project Structure
 
-```
-.
-├── docs/                  # Documentation source files
-│   ├── architecture/      # Architecture decision records
-│   ├── blog/              # Blog posts
-│   ├── examples/          # Example configurations and code
-│   ├── git/               # Git workflow documentation
-│   ├── glossary/          # Project terminology
-│   ├── python/            # Python development guides
-│   └── ...                # Other documentation sections
-├── .github/               # GitHub workflows and CI/CD
-├── scripts/               # Utility scripts
-├── Dockerfile             # Docker configuration
-├── mkdocs.yml             # MkDocs configuration
-└── pyproject.toml         # Python project configuration
-```
+### Directories
+
+| Path     | Purpose                                     |
+| -------- | ------------------------------------------- |
+| docs/    | 📚 Docs: guidelines, roadmap, static assets |
+| src/     | 🧩 Source (Scrapy project + package)        |
+| .github/ | ⚙️ CI/CD workflows                          |
+| scripts/ | 🧰 Utility scripts                          |
+
+### Code layout (src)
+
+| Path                                     | Role                           |
+| ---------------------------------------- | ------------------------------ |
+| src/scrapy.cfg                           | Scrapy config                  |
+| src/sharif_ocw_downloader/config.py      | Configuration management       |
+| src/sharif_ocw_downloader/items.py       | Item definitions (data models) |
+| src/sharif_ocw_downloader/middlewares.py | Middleware components          |
+| src/sharif_ocw_downloader/pipelines.py   | Item pipelines (process/store) |
+| src/sharif_ocw_downloader/settings.py    | Scrapy settings                |
+| src/sharif_ocw_downloader/spiders/       | Spider implementations         |
+
+### Key files & configs
+
+| File                  | Purpose                        |
+| --------------------- | ------------------------------ |
+| Dockerfile            | 🐳 Build Docker image          |
+| docker-compose.yml    | Orchestrate services           |
+| Makefile              | Common automation tasks        |
+| mkdocs.yml            | MkDocs site config             |
+| pyproject.toml        | Python project metadata/config |
+| cliff.toml            | git-cliff (changelog) config   |
+| requirements.lock     | Locked production deps         |
+| requirements-dev.lock | Locked development deps        |
 
 ## 🔧 Configuration
 
