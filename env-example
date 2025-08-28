@@ -1,3 +1,5 @@
+APP_VERSION=0.1.0
+
 # Force Python to use UTF-8 encoding for string handling
 PYTHONUTF8=1
 
@@ -165,3 +167,19 @@ REQUEST_FINGERPRINTER_IMPLEMENTATION=2.7
 
 # Scheduler debug
 SCHEDULER_DEBUG=false
+
+# ==============================================================================
+# LOGGING SETTINGS
+# ==============================================================================
+
+# Enable logging
+LOG_ENABLED=true
+
+# Log encoding
+LOG_ENCODING=utf-8
+
+# Log level (CRITICAL, ERROR, WARNING, INFO, DEBUG)
+LOG_LEVEL=DEBUG
+
+# Log to stdout
+LOG_STDOUT=true
