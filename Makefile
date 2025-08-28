@@ -54,13 +54,13 @@ uv_sync:
 	uv pip install -r requirements.txt
 # UV dependency management commands
 uv_sync_dev:
-	uv sync --extra dev
+	uv sync --group dev
 uv_sync_docs:
-	uv sync --extra docs
+	uv sync --group docs
 uv_sync_test:
-	uv sync --extra test
+	uv sync --group test
 uv_sync_lint:
-	uv sync --extra lint
+	uv sync --group lint
 uv_sync_all:
 	uv sync --python 3.12.10 --upgrade --all-groups --all-extras --reinstall --no-cache --resolution=highest
 uv_mkdocs_build:
