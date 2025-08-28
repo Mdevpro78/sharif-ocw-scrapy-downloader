@@ -1,5 +1,7 @@
 """Environment configuration - ALL from .env."""
 
+from pathlib import Path
+
 from pydantic import Field, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -75,6 +77,16 @@ class EnvConfig(BaseSettings):
             for x in self.OCW_RETRY_HTTP_CODES.split(",")
         ]
 
+    @field_validator("OCW_OUTPUT_PATH")
+    @classmethod
+    def ensure_output_path(cls, v: str) -> Path:
+        """Ensure output directory exists for downloader."""
+        path = Path(v)
+        path.mkdir(parents=True, exist_ok=True)
+        return str(path.resolve().absolute().as_posix())
+
 
 # Single instance
 config = EnvConfig()
+
+print(config.model_dump_json())
