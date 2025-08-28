@@ -1,33 +1,78 @@
-BOT_NAME = "sharif_ocw_downloader"
+from config import config as env
+
+
+BOT_NAME = env.OCW_BOT_NAME
 
 SPIDER_MODULES = ["sharif_ocw_downloader.spiders"]
 NEWSPIDER_MODULE = "sharif_ocw_downloader.spiders"
 
 ADDONS = {}
 
+# ===========================================================================
+# OCW SETTINGS
+# ===========================================================================
+
+OCW_BASE_URL = env.OCW_BASE_URL
+OCW_API_TIMEOUT = env.OCW_API_TIMEOUT
+OCW_OUTPUT_PATH = env.OCW_OUTPUT_PATH
+OCW_USE_ORDINALS = env.OCW_USE_ORDINALS
+OCW_OVERWRITE = env.OCW_OVERWRITE_EXISTING
+OCW_MAX_FILENAME = env.OCW_MAX_FILENAME_LENGTH
+# ===========================================================================
+# End of OCW SETTINGS
+# ===========================================================================
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # USER_AGENT = "sharif_ocw_downloader (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = env.ROBOTSTXT_OBEY
 
 # Concurrency and throttling settings
-# CONCURRENT_REQUESTS = 16
-CONCURRENT_REQUESTS_PER_DOMAIN = 1
-DOWNLOAD_DELAY = 1
+CONCURRENT_REQUESTS = env.CONCURRENT_REQUESTS
+CONCURRENT_REQUESTS_PER_DOMAIN = (
+    env.CONCURRENT_REQUESTS_PER_DOMAIN
+)
+DOWNLOAD_DELAY = env.DOWNLOAD_DELAY
+RANDOMIZE_DOWNLOAD_DELAY = env.RANDOMIZE_DOWNLOAD_DELAY
+
+# Download
+DOWNLOAD_TIMEOUT = env.DOWNLOAD_TIMEOUT
+DOWNLOAD_MAXSIZE = env.DOWNLOAD_MAXSIZE
+DOWNLOAD_WARNSIZE = env.DOWNLOAD_WARNSIZE
+
+# Retry
+RETRY_ENABLED = env.RETRY_ENABLED
+RETRY_TIMES = env.RETRY_TIMES
+RETRY_HTTP_CODES = [
+    int(x.strip()) for x in env.OCW_RETRY_HTTP_CODES.split(",")
+]
+
+# Logging
+LOG_ENABLED = env.LOG_ENABLED
+LOG_LEVEL = env.LOG_LEVEL
+LOG_STDOUT = env.LOG_STDOUT
 
 # Disable cookies (enabled by default)
-# COOKIES_ENABLED = False
+COOKIES_ENABLED = env.COOKIES_ENABLED
 
 # Disable Telnet Console (enabled by default)
-# TELNETCONSOLE_ENABLED = False
+TELNETCONSOLE_ENABLED = env.TELNETCONSOLE_ENABLED
+
+# Stats
+STATS_CLASS = (
+    "scrapy.statscollectors.MemoryStatsCollector"
+    if env.OCW_STATS_ENABLED
+    else None
+)
 
 # Override the default request headers:
-# DEFAULT_REQUEST_HEADERS = {
-#    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-#    "Accept-Language": "en",
-# }
+DEFAULT_REQUEST_HEADERS = {
+    "X-Requested-With": "XMLHttpRequest",
+    "Content-Type": "application/json",
+    "Accept": "application/json, text/plain, */*",
+    "Origin": OCW_BASE_URL,
+}
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
@@ -37,9 +82,12 @@ DOWNLOAD_DELAY = 1
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-# DOWNLOADER_MIDDLEWARES = {
-#    "sharif_ocw_downloader.middlewares.SharifOcwDownloaderDownloaderMiddleware": 543,
-# }
+DOWNLOADER_MIDDLEWARES = {}
+if env.RETRY_ENABLED:
+    DOWNLOADER_MIDDLEWARES.setdefault(
+        "sharif_ocw_downloader.middlewares.SharifOcwDownloaderDownloaderMiddleware",
+        550,
+    )
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -49,30 +97,9 @@ DOWNLOAD_DELAY = 1
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-# ITEM_PIPELINES = {
-#    "sharif_ocw_downloader.pipelines.SharifOcwDownloaderPipeline": 300,
-# }
-
-# Enable and configure the AutoThrottle extension (disabled by default)
-# See https://docs.scrapy.org/en/latest/topics/autothrottle.html
-# AUTOTHROTTLE_ENABLED = True
-# The initial download delay
-# AUTOTHROTTLE_START_DELAY = 5
-# The maximum download delay to be set in case of high latencies
-# AUTOTHROTTLE_MAX_DELAY = 60
-# The average number of requests Scrapy should be sending in parallel to
-# each remote server
-# AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
-# Enable showing throttling stats for every response received:
-# AUTOTHROTTLE_DEBUG = False
-
-# Enable and configure HTTP caching (disabled by default)
-# See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings
-# HTTPCACHE_ENABLED = True
-# HTTPCACHE_EXPIRATION_SECS = 0
-# HTTPCACHE_DIR = "httpcache"
-# HTTPCACHE_IGNORE_HTTP_CODES = []
-# HTTPCACHE_STORAGE = "scrapy.extensions.httpcache.FilesystemCacheStorage"
-
-# Set settings whose default value is deprecated to a future-proof value
-FEED_EXPORT_ENCODING = "utf-8"
+ITEM_PIPELINES = {}
+if env.OCW_PROGRESS_ENABLED:
+    ITEM_PIPELINES.setdefault(
+        "sharif_ocw_downloader.pipelines.SharifOcwDownloaderPipeline",
+        300,
+    )
