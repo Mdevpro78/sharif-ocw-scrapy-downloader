@@ -190,3 +190,6 @@ _build/
 
 # Log files
 .logs
+
+# _version.py
+src/_version.py

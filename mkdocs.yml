@@ -79,7 +79,6 @@ theme:
 plugins:
   - tags
   - search
-  - blog
   - meta
   - section-index
   - glightbox
@@ -235,8 +234,8 @@ nav:
           - Variables: sharif_ocw_scrapy_downloader/variables.md
 
   - Community:
-      - Contributing Guide: CONTRIBUTING.md
       - Code of Conduct: CODE_OF_CONDUCT.md
+      - Contributing Guide: contributing.md
 # URL and rendering configuration
 # ------------------------------
 use_directory_urls: true        # Create clean URLs without .html extension
