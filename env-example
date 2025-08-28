@@ -1,2 +1,167 @@
+# Force Python to use UTF-8 encoding for string handling
 PYTHONUTF8=1
+
+# Set the default encoding for input/output operations to UTF-8
 PYTHONIOENCODING=utf-8
+
+# ==============================================================================
+# SCRAPY CONFIGURATION
+# ==============================================================================
+# This .env file contains all Scrapy settings that are simple scalar values
+# ==============================================================================
+
+ENVIRONMENT=development
+
+# ============================================================================
+#  APPLICATION SETTINGS
+# ============================================================================
+OCW_BOT_NAME=sharif_ocw_downloader
+OCW_BASE_URL=https://ocw.sharif.ir
+OCW_API_TIMEOUT=180.0
+OCW_OUTPUT_PATH=/tmp/ocw_downloads
+OCW_USE_ORDINALS=true
+OCW_OVERWRITE_EXISTING=false
+OCW_MAX_FILENAME_LENGTH=200
+OCW_RETRY_HTTP_CODES=500,502,503,504,408,429
+OCW_STATS_ENABLED=true
+OCW_PROGRESS_ENABLED=true
+
+# ==============================================================================
+# CORE SETTINGS
+# ==============================================================================
+
+# ==============================================================================
+# CONCURRENT REQUEST SETTINGS
+# ==============================================================================
+
+# The maximum number of concurrent requests performed by Scrapy
+CONCURRENT_REQUESTS=16
+
+# Concurrent requests per domain
+CONCURRENT_REQUESTS_PER_DOMAIN=8
+
+# Concurrent requests per IP
+CONCURRENT_REQUESTS_PER_IP=0
+
+# Concurrent items to process
+CONCURRENT_ITEMS=3
+
+# ==============================================================================
+# DOWNLOAD SETTINGS
+# ==============================================================================
+
+# Download delay in seconds
+DOWNLOAD_DELAY=0
+
+# Download timeout in seconds
+DOWNLOAD_TIMEOUT=180
+
+# Maximum download size in bytes (10737418240 = 10GB)
+DOWNLOAD_MAXSIZE=10737418240
+
+# Warning size in bytes (1073741824 = 1GB)
+DOWNLOAD_WARNSIZE=1073741824
+
+# Fail on broken responses
+DOWNLOAD_FAIL_ON_DATALOSS=true
+
+# Randomize download delay
+RANDOMIZE_DOWNLOAD_DELAY=true
+
+# ==============================================================================
+# SPIDER SETTINGS
+# ==============================================================================
+
+# Warn only on spider loader errors
+SPIDER_LOADER_WARN_ONLY=false
+
+# ==============================================================================
+# MEMORY SETTINGS
+# ==============================================================================
+
+# Memory usage enable
+MEMUSAGE_ENABLED=true
+
+# Memory usage limit in MB (0 = no limit)
+MEMUSAGE_LIMIT_MB=0
+
+# Memory usage check interval in seconds
+MEMUSAGE_CHECK_INTERVAL_SECONDS=60.0
+
+# Memory usage warning in MB
+MEMUSAGE_WARNING_MB=0
+
+# ==============================================================================
+# RETRY SETTINGS
+# ==============================================================================
+
+# Enable retry middleware
+RETRY_ENABLED=true
+
+# Number of retry times
+RETRY_TIMES=3
+
+# ==============================================================================
+# STATS SETTINGS
+# ==============================================================================
+
+# Stats dump
+STATS_DUMP=true
+
+# ==============================================================================
+# TELNET CONSOLE SETTINGS
+# ==============================================================================
+
+# Enable telnet console
+TELNETCONSOLE_ENABLED=false
+
+# ==============================================================================
+# ROBOTSTXT SETTINGS
+# ==============================================================================
+
+# Obey robots.txt
+ROBOTSTXT_OBEY=false
+
+# Robots.txt user agent
+ROBOTSTXT_USER_AGENT=
+
+# ==============================================================================
+# COOKIES SETTINGS
+# ==============================================================================
+
+# Enable cookies middleware
+COOKIES_ENABLED=true
+
+# Debug cookies
+COOKIES_DEBUG=false
+
+# ==============================================================================
+# REDIRECT SETTINGS
+# ==============================================================================
+
+# Enable redirect middleware
+REDIRECT_ENABLED=true
+
+# ==============================================================================
+# AUTOTHROTTLE SETTINGS
+# ==============================================================================
+
+# Enable autothrottle
+AUTOTHROTTLE_ENABLED=false
+
+# Autothrottle start delay
+AUTOTHROTTLE_START_DELAY=5.0
+
+# ==============================================================================
+# REQUEST FINGERPRINTER SETTINGS
+# ==============================================================================
+
+# Request fingerprinter implementation version
+REQUEST_FINGERPRINTER_IMPLEMENTATION=2.7
+
+# ==============================================================================
+# SCHEDULER SETTINGS
+# ==============================================================================
+
+# Scheduler debug
+SCHEDULER_DEBUG=false
