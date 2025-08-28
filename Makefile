@@ -6,6 +6,11 @@
 	diff branch-from \
 	set-upstream-feature-branches
 
+ifneq ( ,$ (wildcard ./.env))
+include .env
+export
+endif
+
 # Docker Compose Makefile commands
 COMPOSE_FILE = docker-compose.yml
 # Build containers without using cache
