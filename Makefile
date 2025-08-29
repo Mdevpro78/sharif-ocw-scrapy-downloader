@@ -6,10 +6,9 @@
 	diff branch-from \
 	set-upstream-feature-branches
 
-ifneq ( ,$ (wildcard ./.env))
-include .env
+# Only include .env if it exists
+sinclude .env
 export
-endif
 
 # Docker Compose Makefile commands
 COMPOSE_FILE = docker-compose.yml
