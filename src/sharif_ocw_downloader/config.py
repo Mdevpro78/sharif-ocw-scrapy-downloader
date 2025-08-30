@@ -23,6 +23,9 @@ class EnvConfig(BaseSettings):
     # Application Settings (prefixed)
     OCW_BOT_NAME: str = Field(...)
     OCW_BASE_URL: str = Field(...)
+    OCW_CONTENT_BASE_URL: str = Field(...)
+    OCW_COURSE_URL: str = Field(...)
+    OCW_CHAPTER_URL: str = Field(...)
     OCW_API_TIMEOUT: float = Field(..., ge=1.0, le=600.0)
     OCW_OUTPUT_PATH: str = Field(...)
     OCW_USE_ORDINALS: bool = Field(...)
@@ -86,7 +89,8 @@ class EnvConfig(BaseSettings):
         return str(path.resolve().absolute().as_posix())
 
 
-# Single instance
-config = EnvConfig()
-
-print(config.model_dump_json())
+ENV_FILE_PATH: Path = Path(__file__).parent.parent.parent / ".env"
+if ENV_FILE_PATH.exists():
+    config = EnvConfig(_env_file=ENV_FILE_PATH)
+else:
+    config = EnvConfig()

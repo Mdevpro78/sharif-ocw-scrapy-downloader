@@ -19,6 +19,9 @@ ENVIRONMENT=development
 # ============================================================================
 OCW_BOT_NAME=sharif_ocw_downloader
 OCW_BASE_URL=https://ocw.sharif.ir
+OCW_CONTENT_BASE_URL=http://ocw.sharif.edu
+OCW_COURSE_URL=${OCW_BASE_URL}/api/v1/ocw/course/get
+OCW_CHAPTER_URL=${OCW_BASE_URL}/api/v1/ocw/sessions
 OCW_API_TIMEOUT=180.0
 OCW_OUTPUT_PATH=/tmp/ocw_downloads
 OCW_USE_ORDINALS=true
