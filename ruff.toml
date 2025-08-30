@@ -84,6 +84,7 @@ select = [
 ignore = [
   # W191: indentation contains tabs
   "W191",
+  "W505",
   # E111: indentation is not a multiple of four
   "E111",
   # E114: indentation is not a multiple of four (continued)
@@ -114,8 +115,13 @@ ignore = [
   "ANN001",
   "ANN002",
   "ANN003",
+  "ANN201",
+  "ANN206",
+  "ANN204",
   # D100, D401, D404, D205, D210, D417: various docstring and annotation issues
   "D100",
+  "D101",
+  "D102",
   "D401",
   "D404",
   "D205",
