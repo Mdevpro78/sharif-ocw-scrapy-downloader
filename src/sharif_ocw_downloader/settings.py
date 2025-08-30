@@ -1,4 +1,4 @@
-from config import config as env
+from .config import config as env
 
 
 BOT_NAME = env.OCW_BOT_NAME

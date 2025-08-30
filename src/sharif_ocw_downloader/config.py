@@ -89,7 +89,8 @@ class EnvConfig(BaseSettings):
         return str(path.resolve().absolute().as_posix())
 
 
-# Single instance
-config = EnvConfig()
-
-print(config.model_dump_json())
+ENV_FILE_PATH: Path = Path(__file__).parent.parent.parent / ".env"
+if ENV_FILE_PATH.exists():
+    config = EnvConfig(_env_file=ENV_FILE_PATH)
+else:
+    config = EnvConfig()
