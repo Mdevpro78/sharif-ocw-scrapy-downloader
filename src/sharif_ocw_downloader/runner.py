@@ -16,6 +16,7 @@ Definition: Entry point that orchestrates the entire crawl process from
 """
 
 import argparse
+import logging
 import sys
 from pathlib import Path
 
@@ -25,6 +26,8 @@ from scrapy.utils.project import get_project_settings
 from src.sharif_ocw_downloader.spiders.course_spider import (
     CourseSpider,
 )
+
+logger = logging.getLogger(__file__)
 
 
 def parse_arguments():
@@ -88,8 +91,9 @@ def main():
 
     # Create settings
     settings = get_project_settings()
-
-    settings["OCW_OUTPUT_PATH"] = args.output_path
+    output_path = Path(args.output_path).resolve().absolute()
+    logger.info(output_path)
+    settings["FILES_STORE"] = str(output_path.as_posix())
     settings["OCW_USE_ORDINALS"] = args.toggle_ordinals
     settings["OCW_OVERWRITE_EXISTING"] = args.overwrite
     settings["CONCURRENT_REQUESTS"] = (
@@ -101,7 +105,7 @@ def main():
     settings["CONCURRENT_ITEMS"] = args.max_concurrent_downloads
 
     # Ensure output directory exists
-    args.output_path.mkdir(parents=True, exist_ok=True)
+    output_path.mkdir(parents=True, exist_ok=True)
 
     # Create crawler process
     process = CrawlerProcess(settings)
@@ -118,7 +122,7 @@ def main():
     print("OCW Scraper - Course Downloader")
     print("=" * 60)
     print(f"Course ID: {args.course_id}")
-    print(f"Output Path: {args.output_path.absolute()}")
+    print(f"Output Path: {args.output_path.resolve().absolute()}")
     print(f"Max Concurrent: {args.max_concurrent_downloads}")
     print(f"Use Ordinals: {args.toggle_ordinals}")
     print(f"Overwrite: {args.overwrite}")

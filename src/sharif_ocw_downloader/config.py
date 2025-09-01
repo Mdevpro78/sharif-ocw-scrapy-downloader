@@ -85,7 +85,6 @@ class EnvConfig(BaseSettings):
     def ensure_output_path(cls, v: str) -> Path:
         """Ensure output directory exists for downloader."""
         path = Path(v)
-        path.mkdir(parents=True, exist_ok=True)
         return str(path.resolve().absolute().as_posix())
 
 

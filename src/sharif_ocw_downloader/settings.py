@@ -17,14 +17,13 @@ OCW_CONTENT_BASE_URL = env.OCW_CONTENT_BASE_URL
 OCW_COURSE_URL = env.OCW_COURSE_URL
 OCW_CHAPTER_URL = env.OCW_CHAPTER_URL
 OCW_API_TIMEOUT = env.OCW_API_TIMEOUT
-OCW_OUTPUT_PATH = env.OCW_OUTPUT_PATH
+FILES_STORE = env.OCW_OUTPUT_PATH
 OCW_USE_ORDINALS = env.OCW_USE_ORDINALS
 OCW_OVERWRITE = env.OCW_OVERWRITE_EXISTING
 OCW_MAX_FILENAME = env.OCW_MAX_FILENAME_LENGTH
 # ===========================================================================
 # End of OCW SETTINGS
 # ===========================================================================
-
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # USER_AGENT = "sharif_ocw_downloader (+http://www.yourdomain.com)"
 
@@ -75,6 +74,7 @@ DEFAULT_REQUEST_HEADERS = {
     "Content-Type": "application/json",
     "Accept": "application/json, text/plain, */*",
     "Origin": OCW_BASE_URL,
+    # "HOST": OCW_BASE_URL,
 }
 
 # Enable or disable spider middlewares
