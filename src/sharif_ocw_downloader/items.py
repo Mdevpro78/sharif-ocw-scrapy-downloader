@@ -9,8 +9,7 @@ class SharifOcwDownloaderSessionItem(scrapy.Item):
         1. Carry session data through pipelines.
     Collaborators:
         - Spider (Association - created by)
-        - DownloadPipeline (Dependency - processed by)
-        - FileSystemPipeline (Dependency - uses)
+        - SharifOcwDownloaderPipeline (Dependency - processed by)
     """
 
     # Content information
@@ -25,3 +24,5 @@ class SharifOcwDownloaderSessionItem(scrapy.Item):
     # Metadata
     course_title = scrapy.Field()
     chapter_title = scrapy.Field()
+
+    download_status = scrapy.Field()
