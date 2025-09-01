@@ -20,17 +20,9 @@ class SharifOcwDownloaderPipeline(FilesPipeline):
 
     def get_media_requests(self, item, info):
         item = ItemAdapter(item)
-        link = item.get("link")
-        logger.info(f"link: {link}")
-        _headers = {"X-Requested-With": "XMLHttpRequest"}
-        if link and link.endswith(".pdf"):
-            yield Request(
-                link,
-                method="GET",
-                headers=_headers,
-                dont_filter=True,
-                meta={"dont_cache": True},
-            )
+
+        if link := item.get("link", None):
+            yield Request(link, method="GET", dont_filter=True)
 
     def file_path(
         self,
