@@ -28,7 +28,10 @@ class CourseSpider(scrapy.Spider):
     """
 
     name = "sharif_ocw_course_downloader"
-    allowed_domains = ("ocw.sharif.ir",)
+    allowed_domains = (
+        "ocw.sharif.ir",
+        "ocw.sharif.edu",
+    )
 
     def __init__(
         self,
@@ -50,7 +53,7 @@ class CourseSpider(scrapy.Spider):
         self.ocw_course_url = settings.get("OCW_COURSE_URL")
         self.ocw_chapter_url = settings.get("OCW_CHAPTER_URL")
         self.ocw_content_base_url = settings.get(
-            "OCW_CONTENT_BASE_URL",
+            "OCW_BASE_URL",
         )
 
     async def start(self) -> Iterator[Request]:
@@ -132,23 +135,21 @@ class CourseSpider(scrapy.Spider):
         """
         # Parse JSON response
         data = json.loads(response.text)
-
+        course_title = response.meta.get("course_title")
         # Extract chapters
         chapters_data = data.get("chapters", {})
         for _, chapter_data in chapters_data.items():
             for session in chapter_data.get("sessions", []):
                 yield SharifOcwDownloaderSessionItem(
                     title=session.get("title"),
-                    link=f"{self.ocw_content_base_url}/{session.get('link')}",
+                    link=f"{self.ocw_content_base_url}{session.get('link')}",
                     session_sort=session.get("sort"),
                     ext=self._get_extension(
                         url=session.get("link"),
                     ),
                     chapter_title=chapter_data.get("title"),
                     chapter_sort=chapter_data.get("sort"),
-                    course_title=response.meta.get(
-                        "course_title",
-                    ),
+                    course_title=course_title,
                 )
 
     def _get_extension(self, url: str) -> str:
