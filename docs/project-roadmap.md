@@ -70,7 +70,7 @@
 
   - [X] Implement `CourseSpider` (4h)
   - [X] Handle request/response parsing (2h)
-  - [ ] Basic error handling/logging (2h)
+  - [X] Basic error handling/logging (2h)
 - **Dependencies:** Data models from Day 2
 - **Review Points:** Spider outputs structured items for one course
 
@@ -96,9 +96,9 @@
 - **Deliverables:** DownloadPipeline, ProgressPipeline, Extensions
 - **Tasks:**
 
-  - [ ] Implement DownloadPipeline extending FilesPipeline (3h)
+  - [X] Implement DownloadPipeline extending Scrapy's FilesPipeline (3h)
   - [ ] Implement ProgressPipeline + Extension (3h)
-  - [ ] Test downloads with sample courses (2h)
+  - [X] Test downloads with sample courses (2h)
 - **Dependencies:** Pipelines from Day 4
 - **Review Points:** Files download correctly with progress logs
 
