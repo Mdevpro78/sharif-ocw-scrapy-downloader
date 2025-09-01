@@ -136,6 +136,7 @@ class CourseSpider(scrapy.Spider):
         # Parse JSON response
         data = json.loads(response.text)
         course_title = response.meta.get("course_title")
+        chapter_counter = 0
         # Extract chapters
         chapters_data = data.get("chapters", {})
         for _, chapter_data in chapters_data.items():
@@ -148,9 +149,10 @@ class CourseSpider(scrapy.Spider):
                         url=session.get("link"),
                     ),
                     chapter_title=chapter_data.get("title"),
-                    chapter_sort=chapter_data.get("sort"),
+                    chapter_sort=chapter_counter,
                     course_title=course_title,
                 )
+            chapter_counter += 1
 
     def _get_extension(self, url: str) -> str:
         """Extract file extension."""
