@@ -17,7 +17,8 @@ classifiers = [
 
 # Core dependencies used by the package itself
 dependencies = [
-  "hatch-vcs[dev]>=0.5.0",
+  "hatch-vcs>=0.5.0",
+  "hatch>=1.14.0",
   "orjson>=3.11.3",
   "pydantic>=2.9.2",
   "pydantic-settings>=2.10.1",
@@ -111,14 +112,9 @@ lint = [
 # Development environment - combines all extras for convenience
 dev = [
   # Include all groups via references instead of duplicating
-  "sharif_ocw_scrapy_downloader[test,docs,lint]",
-  "hatch>=1.14.0",
-  "python-semantic-release>=9.21.0",
   "git-cliff>=2.10.0",
 ]
 
-# For compatibility with tools that don't support nested references
-all = [ "sharif_ocw_scrapy_downloader[test,docs,lint]" ]
 
 [build-system]
 requires = [ "hatchling", "hatch-vcs" ]
