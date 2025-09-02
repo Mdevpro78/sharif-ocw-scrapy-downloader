@@ -124,9 +124,9 @@
 - **Deliverables:** CLI runner, docs, GitHub milestone closure
 - **Tasks:**
 
-  - [ ] Implement CLI `runner.py` (2h)
+  - [X] Implement CLI `runner.py` (2h)
   - [ ] Integration tests on sample course (2h)
-  - [ ] Write docs: setup + usage (2h)
+  - [X] Write docs: setup + usage (2h)
   - [ ] Sprint review & GitHub release (2h)
 - **Dependencies:** All previous work
 - **Review Points:** MVP ready, can fetch and download a full course
