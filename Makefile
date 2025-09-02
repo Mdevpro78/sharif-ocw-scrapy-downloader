@@ -46,7 +46,7 @@ clean:
 test:
 	@echo "No tests defined"
 uv_init_env:
-	uv venv --python=3.11.11 .venv
+	uv venv --python=3.12.10 .venv
 	uv pip install --upgrade pip
 
 uv_sync:
@@ -71,6 +71,13 @@ setup_docs: uv_sync_docs
 	@echo "Documentation tools installed!"
 setup_ci: uv_sync_test uv_sync_lint
 	@echo "CI environment ready!"
+
+# Requirements generation commands
+requirements:
+	uv pip compile --output-file=requirements.txt pyproject.toml
+
+dev-requirements:
+	uv pip compile --group dev --group test --group lint --group docs --output-file=requirements.dev.txt pyproject.toml
 
 uv_pre_commit:
 	uv run pre-commit run --all-files -v --color always
