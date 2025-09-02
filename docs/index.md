@@ -39,206 +39,95 @@
 
 ## 🚀 Getting Started
 
-### ⚡️ Quick Installation
+### 📥 Clone the Repository
+
+First, clone the repository to your local machine:
 
 ```bash
-# Install using pip
-pip install -r requirements.txt
-
+git clone https://github.com/Mdevpro78/sharif-ocw-scrapy-downloader
+cd sharif-ocw-scrapy-downloader
 ```
 
-### 🛠️ Essential Commands
+### ⚡️ Quick Installation
 
-!!! tip "Common Operations"
+Install the required dependencies using one of the following methods:
 
-    - 🆕 `mkdocs new [dir-name]` - Create a new project
-    - 🔄 `mkdocs serve` - Start live-reloading server
-    - 🏗️ `mkdocs build` - Build static site
-    - ❓ `mkdocs -h` - Help information
+!!! tip "Installation Options"
 
----
+    === "Using pip"
+
+        ```bash
+        # Install using pip
+        pip install -r requirements.txt (or requirements.dev.txt )
+        ```
+
+    === "Using uv (Recommended)"
+
+        ```bash
+        # Sync dependencies
+        make uv_sync_all
+        ```
+
+### 🏃‍♂️ Running the Crawler
+
+#### Method 1: Using Makefile Commands
+
+The project includes several convenient Makefile targets for common operations:
+
+!!! example "Available Makefile Commands"
+
+    ```bash
+    # Set up development environment
+    make setup_dev
+
+    # Run pre-commit hooks
+    make uv_pre_commit
+
+    # Clean cache and temporary files
+    make clean
+    ```
+
+#### Method 2: Direct Execution
+
+To download course content, use the following command:
+
+```bash
+uv run python sharif_ocw_downloader/runner.py --course-id=course_id --max-concurrent-downloads=2 --output-path="../test_download_dir"
+```
+
+!!! info "Command Parameters"
+
+    - `--course-id=course_id`: Specifies the course ID to download (replace with desired course ID)
+    - `--max-concurrent-downloads=2`: Sets the maximum number of concurrent downloads
+    - `--output-path="../test_download_dir"`: Defines the output directory for downloaded files
 
 ## 📁 Project Layout
 
 !!! abstract "Directory Structure"
 
     ```plaintext
-
+    sharif-ocw-scrapy-downloader/
+    ├── .github/                    # GitHub workflows and configurations
+    ├── docs/                       # Documentation files
+    │   ├── index.md               # Main documentation page
+    │   ├── contributing.md        # Contribution guidelines
+    │   └── static/                # Static assets for documentation
+    ├── src/                       # Source code
+    │   └── sharif_ocw_downloader/ # Main package
+    │       ├── spiders/           # Scrapy spiders
+    │       ├── config.py          # Configuration management
+    │       ├── items.py           # Scrapy items
+    │       ├── middlewares.py     # Scrapy middlewares
+    │       ├── pipelines.py       # Scrapy pipelines
+    │       ├── runner.py          # Main runner script
+    │       └── settings.py        # Scrapy settings
+    ├── scripts/                   # Utility scripts
+    ├── Dockerfile                 # Docker configuration
+    ├── docker-compose.yml         # Docker Compose configuration
+    ├── Makefile                   # Build and development commands
+    ├── pyproject.toml             # Project configuration
+    └── requirements.txt           # Python dependencies
     ```
-
----
-
-## 🔌 Project Dependencies
-
-This project leverages a powerful ecosystem of MkDocs plugins and extensions to create beautiful, functional documentation.
-
-### 🎨 Core Components
-
-!!! note "Theme & Essential Plugins"
-
-    === "Material Theme & UI"
-
-        - 🎯 **mkdocs-material** `v9.6.8+`
-          - [:material-book:{ .middle } Documentation](https://squidfunk.github.io/mkdocs-material/)
-          - [:octicons-mark-github-16: Source](https://github.com/squidfunk/mkdocs-material)
-          - 💡 *A beautiful and feature-rich Material Design theme*
-
-        ---
-
-        - 🏛️ **mkdocs-material-adr** `v1.1.2+`
-          - [:octicons-mark-github-16: Source](https://github.com/simonw/mkdocs-material-adr)
-          - 💡 *Architecture Decision Records integration for Material theme*
-
-        ---
-
-        - 🖌️ **neoteroi-mkdocs** `v1.1.0+`
-          - [:octicons-mark-github-16: Source](https://github.com/Neoteroi/mkdocs-plugins)
-          - 💡 *Beautiful UI cards and enhanced components*
-
-    === "Diagram Support"
-
-        - 📊 **mkdocs-puml** `v2.3.0+`
-          - [:material-book:{ .middle } Documentation](https://github.com/MikhailKravets/mkdocs_puml)
-          - [:octicons-mark-github-16: Source](https://github.com/MikhailKravets/mkdocs_puml)
-          - 💡 *PlantUML diagram integration*
-
-    === "Content Inclusion"
-
-        - 📎 **mkdocs-include-markdown-plugin** `v7.1.5+`
-        - [:material-book:{ .middle } Documentation](https://github.com/mondeja/mkdocs-include-markdown-plugin)
-        - [:octicons-mark-github-16: Source](https://github.com/mondeja/mkdocs-include-markdown-plugin)
-        - 💡 *Include markdown files within other files*
-
-        ---
-
-        - 📑 **mdx-include** `v1.4.2+`
-        - [:octicons-mark-github-16: Source](https://github.com/oprypin/markdown-include)
-        - 💡 *Extended markdown inclusion capabilities*
-
-        ---
-
-        - 🧩 **mkdocs-macros-includex** `v0.0.6+`
-        - [:octicons-mark-github-16: Source](https://github.com/fralau/mkdocs-macros-includex)
-        - 💡 *Extended content inclusion with macros*
-
-    === "Navigation & Structure"
-
-        - 🎭 **mkdocs-awesome-pages-plugin** `v2.10.1+`
-        - [:octicons-mark-github-16: Source](https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin)
-        - 💡 *Enhanced page navigation control*
-
-        ---
-
-        - 🔄 **mkdocs-redirects** `v1.2.2+`
-        - [:octicons-mark-github-16: Source](https://github.com/datarobot/mkdocs-redirects)
-        - 💡 *Create page redirects and maintain URL compatibility*
-
-        ---
-
-        - 📑 **mkdocs-section-index** `v0.3.9+`
-        - [:octicons-mark-github-16: Source](https://github.com/oprypin/mkdocs-section-index)
-        - 💡 *Allow sections to have dedicated index/landing pages*
-
-### 📖 Documentation Tools
-
-!!! example "Code Documentation"
-
-    === "API Documentation"
-
-        - 🔍 **mkdocstrings** `v0.29.0+`
-          - [:material-book: Documentation](https://mkdocstrings.github.io/)
-          - [:octicons-mark-github-16: Source](https://github.com/mkdocstrings/mkdocstrings)
-          - 💡 *Automatic code documentation*
-
-        ---
-
-        - 📘 **mkapi** `v4.1.0+`
-          - [:octicons-mark-github-16: Source](https://github.com/mysticfall/mkapi)
-          - 💡 *Alternative API documentation generator*
-
-        ---
-
-        - 📚 **mkdoxy** `v1.2.7+`
-          - [:octicons-mark-github-16: Source](https://github.com/JakubAndrysek/mkdoxy)
-          - 💡 *Doxygen integration for MkDocs*
-
-        ---
-
-        - 🔠 **griffe-typingdoc** `v0.2.8+`
-          - [:octicons-mark-github-16: Source](https://github.com/mkdocstrings/griffe-typingdoc)
-          - 💡 *Enhanced type annotations documentation*
-
-        ---
-
-        - 📝 **pymarkdownlnt** `v0.9.29+`
-          - [:octicons-mark-github-16: Source](https://github.com/jackdewinter/pymarkdown)
-          - 💡 *Markdown linting and validation tool*
-
-        ---
-
-        - 🧩 **mkdocs-material-extensions** `v1.3.1+`
-          - [:octicons-mark-github-16: Source](https://github.com/facelessuser/mkdocs-material-extensions)
-          - 💡 *Extensions for the Material theme*
-
-    === "Python Handler"
-
-        - 🐍 **mkdocstrings-python** `v1.16.5+`
-          - [:octicons-mark-github-16: Source](https://github.com/mkdocstrings/python)
-          - 💡 *Python-specific documentation handler*
-
-### 🎬 Advanced Features
-
-!!! tip "Templates & Enhancements"
-
-    === "Macro Support"
-
-        - 🎮 **mkdocs-macros-plugin** `v1.3.7+`
-          - [:material-book: Documentation](https://mkdocs-macros-plugin.readthedocs.io/)
-          - [:octicons-mark-github-16: Source](https://github.com/fralau/mkdocs-macros-plugin)
-          - 💡 *Variable and macro functionality*
-
-    === "Metadata & Extensions"
-
-        - 📋 **mkdocs-meta-descriptions-plugin** `v4.0.0+`
-          - [:octicons-mark-github-16: Source](https://github.com/prcr/mkdocs-meta-descriptions-plugin)
-          - 💡 *Automatic meta description generation*
-
-        ---
-
-        - 📊 **mkdocs-markdownextradata-plugin** `v0.2.6+`
-          - [:octicons-mark-github-16: Source](https://github.com/rosscdh/mkdocs-markdownextradata-plugin)
-          - 💡 *Include external data in markdown files*
-
-        ---
-
-        - 🧰 **pymdown-extensions** `v10.14.3+`
-          - [:material-book: Documentation](https://facelessuser.github.io/pymdown-extensions/)
-          - [:octicons-mark-github-16: Source](https://github.com/facelessuser/pymdown-extensions)
-          - 💡 *Powerful extensions for Python Markdown*
-
-    === "Optimization & Versioning"
-
-        - ⚡ **mkdocs-minify-plugin** `v0.8.0+`
-          - [:octicons-mark-github-16: Source](https://github.com/byrnereese/mkdocs-minify-plugin)
-          - 💡 *Minify HTML, CSS and JavaScript files*
-
-        ---
-
-        - 🏷️ **mkdocs-version-annotations** `v1.0.0+`
-          - [:octicons-mark-github-16: Source](https://github.com/glennmatthews/mkdocs-version-annotations)
-          - 💡 *Add version annotations to your documentation*
-
-        ---
-
-        - 📅 **mkdocs-git-revision-date-localized-plugin** `v1.4.5+`
-          - [:octicons-mark-github-16: Source](https://github.com/timvink/mkdocs-git-revision-date-localized-plugin)
-          - 💡 *Show the last git modification date*
-
-        ---
-
-        - 🏷️ **mike** `v2.1.3+`
-          - [:octicons-mark-github-16: Source](https://github.com/jimporter/mike)
-          - 💡 *Manage multiple versions of your MkDocs-powered documentation*
 
 ---
 
@@ -290,7 +179,7 @@ This project leverages a powerful ecosystem of MkDocs plugins and extensions to 
 
     ```markdown
     # Setup git clone <https://github.com/username/repo>
-    cd repo rye sync
+    cd repo uv sync
     # Development
     git checkout -b feature/name
     # Make changes
@@ -302,8 +191,6 @@ This project leverages a powerful ecosystem of MkDocs plugins and extensions to 
 
     1. ✅ Follow code style
     2. 📝 Update docs
-    3. 🧪 Add tests
-    4. 🔍 Pass CI checks
 
 !!! success "Ready to Contribute"
 
